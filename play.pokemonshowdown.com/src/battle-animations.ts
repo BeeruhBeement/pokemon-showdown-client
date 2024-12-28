@@ -2796,6 +2796,8 @@ export class PokemonSprite extends Sprite {
 			status += '<span class="par">PAR</span> ';
 		} else if (pokemon.status === 'frz') {
 			status += '<span class="frz">FRZ</span> ';
+		} else if (pokemon.status === 'bld') {
+			status += '<span class="bld">BLD</span> ';
 		}
 		if (pokemon.terastallized) {
 			status += `<img src="${Dex.resourcePrefix}sprites/types/${encodeURIComponent(pokemon.terastallized)}.png" alt="${pokemon.terastallized}" class="pixelated" /> `;
@@ -6147,6 +6149,49 @@ export const BattleStatusAnims: AnimTable = {
 			attacker.anim({
 				time: 300,
 			}, 'swing');
+		},
+	},
+	bld: {
+		anim(scene, [attacker]) {
+			scene.showEffect('blackwisp', {
+				x: attacker.x + 30,
+				y: attacker.y - 40,
+				z: attacker.z,
+				scale: 0.2,
+				opacity: 1,
+				time: 0,
+			}, {
+				y: attacker.y,
+				scale: 1,
+				opacity: 0.5,
+				time: 300,
+			}, 'decel', 'fade');
+			scene.showEffect('blackwisp', {
+				x: attacker.x - 30,
+				y: attacker.y - 40,
+				z: attacker.z,
+				scale: 0.2,
+				opacity: 1,
+				time: 100,
+			}, {
+				y: attacker.y,
+				scale: 1,
+				opacity: 0.5,
+				time: 400,
+			}, 'decel', 'fade');
+			scene.showEffect('blackwisp', {
+				x: attacker.x,
+				y: attacker.y - 40,
+				z: attacker.z,
+				scale: 0.2,
+				opacity: 1,
+				time: 200,
+			}, {
+				y: attacker.y,
+				scale: 1,
+				opacity: 0.5,
+				time: 500,
+			}, 'decel', 'fade');
 		},
 	},
 };

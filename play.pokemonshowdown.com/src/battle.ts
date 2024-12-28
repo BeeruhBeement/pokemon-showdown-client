@@ -705,7 +705,7 @@ export class Side {
 			this.sideConditions[condition] = [effect.name, 1, 5, 0];
 			break;
 		case 'tailwind':
-			this.sideConditions[condition] = [effect.name, 1, this.battle.gen >= 5 ? persist ? 6 : 4 : persist ? 5 : 3, 0];
+			this.sideConditions[condition] = [effect.name, 1, (this.battle.gen >= 5 || this.battle.mod === 'gen3mod') ? persist ? 6 : 4 : persist ? 5 : 3, 0];
 			break;
 		case 'luckychant':
 			this.sideConditions[condition] = [effect.name, 1, 5, 0];
@@ -1726,6 +1726,9 @@ export class Battle {
 				case 'psn':
 					this.scene.runStatusAnim('psn' as ID, [poke]);
 					break;
+				case 'bld':
+					this.scene.runStatusAnim('bld' as ID, [poke]);
+					break;
 				case 'baddreams':
 					this.scene.runStatusAnim('cursed' as ID, [poke]);
 					break;
@@ -2181,6 +2184,10 @@ export class Battle {
 				this.scene.resultAnim(poke, 'Frozen', 'frz');
 				this.scene.runStatusAnim('frz' as ID, [poke]);
 				break;
+			case 'bld':
+				this.scene.resultAnim(poke, 'Bleed', 'bld');
+				this.scene.runStatusAnim('bld' as ID, [poke]);
+				break;
 			default:
 				this.scene.updateStatbar(poke);
 				break;
@@ -2224,6 +2231,9 @@ export class Battle {
 					break;
 				case 'frz':
 					this.scene.resultAnim(poke, 'Thawed', 'good');
+					break;
+				case 'bld':
+					this.scene.resultAnim(poke, 'Bleed cured', 'good');
 					break;
 				default:
 					poke.removeVolatile('confusion' as ID);
@@ -3233,7 +3243,7 @@ export class Battle {
 		// status parse
 		if (!status) {
 			output.status = '';
-		} else if (status === 'par' || status === 'brn' || status === 'slp' || status === 'frz' || status === 'tox') {
+		} else if (status === 'par' || status === 'brn' || status === 'slp' || status === 'frz' || status === 'tox' || status === 'bld') {
 			output.status = status;
 		} else if (status === 'psn' && output.status !== 'tox') {
 			output.status = status;

@@ -246,7 +246,16 @@
 				zubl: "ZUBL",
 
 				subl: "SUBL",
-				su: "SU"
+				su: "SU",
+
+				"8ubl": "8UBL",
+				"8u": "8U",
+				"9ubl": "9UBL",
+				"9u": "9U",
+				"10ubl": "10UBL",
+				"10u": "10U",
+				"11ubl": "11UBL",
+				"11u": "11U"
 			};
 			var tier = {name: tierTable[id]};
 			return this.renderTierRow(tier, matchStart, matchLength, errorMessage);
