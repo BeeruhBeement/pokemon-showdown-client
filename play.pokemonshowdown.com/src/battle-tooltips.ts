@@ -2049,7 +2049,7 @@ class BattleTooltips {
 		if (['psn', 'tox'].includes(pokemon.status) && (move.category === 'Physical' || this.battle.tier.includes("Modded"))) {
 			value.abilityModify(1.5, "Toxic Boost");
 		}
-		if (['Rock', 'Ground', 'Steel'].includes(moveType) && this.battle.weather === 'sandstorm' && !this.battle.tier.includes("VaporeMons")) {
+		if ((['Rock', 'Ground', 'Steel'].includes(moveType) || this.battle.tier.includes("Modded")) && this.battle.weather === 'sandstorm' && !this.battle.tier.includes("VaporeMons")) {
 			if (value.tryAbility("Sand Force")) value.weatherModify(1.3, "Sandstorm", "Sand Force");
 		}
 		if (this.battle.weather === 'sandstorm' && this.battle.tier.includes("VaporeMons")) {

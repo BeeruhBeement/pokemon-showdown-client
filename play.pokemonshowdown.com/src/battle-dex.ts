@@ -334,11 +334,6 @@ const Dex = new class implements ModdedDex {
 			'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Psychic', 'Ghost', 'Fairy', 'Sound',
 		].includes(type) ? 'Special' : 'Physical';
 	}
-	getGen1ModCategory(type: string) {
-		return [
-			'Fire', 'Water', 'Grass', 'Ice', 'Electric', 'Dark', 'Psychic', 'Dragon', 'Cosmic', 'Earth', 'Light', 'Sound'
-		].includes(type) ? 'Special' : 'Physical';
-	}
 
 	items = {
 		get: (nameOrItem: string | Item | null | undefined): Item => {
@@ -996,9 +991,6 @@ class ModdedDex {
 						break;
 					case 'gen3mod':
 						data.category = Dex.getGen3ModCategory(data.type);	
-						break;
-					case 'gen1mod':
-						data.category = Dex.getGen1ModCategory(data.type);	
 						break;
 					default: 
 						data.category = Dex.getGen3Category(data.type);
