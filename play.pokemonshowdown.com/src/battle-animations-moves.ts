@@ -36509,25 +36509,5 @@ BattleMoveAnims['rockcrunch'] = {anim: BattleMoveAnims['crunch'].anim};
 BattleMoveAnims['deepfreeze'] = {anim: BattleMoveAnims['icywind'].anim};
 BattleMoveAnims['frostbite'] = {anim: BattleMoveAnims['freezedry'].anim};
 
-// gen 1 mod
-BattleMoveAnims['fissileblast'] = {anim: BattleMoveAnims['leafstorm'].anim};
-BattleMoveAnims['beam'] = {anim: BattleMoveAnims['icebeam'].anim};
-BattleMoveAnims['glassshards'] = {anim: BattleMoveAnims['iceshard'].anim};
-BattleMoveAnims['meteor'] = {anim: BattleMoveAnims['dracometeor'].anim};
-BattleMoveAnims['megabyte'] = {anim: BattleMoveAnims['icefang'].anim};
-BattleMoveAnims['lagblast'] = {
-	anim: BattleMoveAnims['technoblast'].anim,
-	prepareAnim: BattleOtherAnims.chargestatus.anim,
-};
-BattleMoveAnims['donuttrap'] = {anim: BattleMoveAnims['bind'].anim};
-BattleMoveAnims['sugarblast'] = {anim: BattleMoveAnims['overheat'].anim};
-BattleMoveAnims['gammaray'] = {anim: BattleMoveAnims['confuseray'].anim};
-
-// fakemons/unused
-BattleMoveAnims['zenbash'] = {anim: BattleMoveAnims['zenheadbutt'].anim};
-BattleMoveAnims['zensmash'] = {anim: BattleMoveAnims['gigaimpact'].anim};
-BattleMoveAnims['powerlaser'] = {anim: BattleMoveAnims['hyperbeam'].anim};
-BattleMoveAnims['guardianbarrage'] = {anim: BattleMoveAnims['flameburst'].anim};
-BattleMoveAnims['plasticblaze'] = {anim: BattleMoveAnims['willowisp'].anim};
-BattleMoveAnims['epeiusgimmick'] = {anim: BattleMoveAnims['outrage'].anim};
-BattleMoveAnims['harpoonjab'] = {anim: BattleMoveAnims['smartstrike'].anim};
+// poaaltuniverse
+BattleMoveAnims['radiantburst'] = {anim: BattleMoveAnims['lusterpurge'].anim};
