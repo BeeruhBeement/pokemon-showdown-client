@@ -1264,7 +1264,7 @@
 			var species = this.curTeam.dex.species.get(set.species);
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
-			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex') || this.curTeam.format.includes('modded');
+			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex') || this.curTeam.format.includes('modded') || this.curTeam.format.includes('poa');
 			var isDental = this.curTeam.format.includes('dental');
 			var buf = '<li value="' + i + '">';
 			if (!set.species || !species) {
@@ -2731,7 +2731,7 @@
 			var set = this.curSet;
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
-			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex');
+			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex') || this.curTeam.format.includes('poa');
 			var isDental = this.curTeam.format.includes('dental');
 			var isHackmons = this.curTeam.format.includes('hackmons') || this.curTeam.format.endsWith('bh');
 			var species = this.curTeam.dex.species.get(set.species, undefined, "from updateDetailsForm");
@@ -2838,7 +2838,7 @@
 			var species = this.curTeam.dex.species.get(set.species, undefined, "from detailsChange");
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
-			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex');
+			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex') || this.curTeam.format.includes('poa');
 			var isDental = this.curTeam.format.includes('dental') || this.curTeam.format.includes('fakemons');
 
 			// level
