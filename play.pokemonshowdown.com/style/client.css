@@ -1274,24 +1274,24 @@ p.or:after {
 	width: 96px;
 	height: 96px;
 	position: absolute;
-	left: -72px;
+	left: -62px;
 	bottom: -20px;
-	background: url(https://play.pokemonshowdown.com/sprites/gen5/abomasnow-mega.png) center no-repeat;
+	background: url(https://play.pokemonshowdown.com/sprites/gen5/regirock.png) center no-repeat;
 }
 .roomcounters button:hover .usercount {
-	background: url(https://play.pokemonshowdown.com/sprites/gen5ani/abomasnow-mega.gif) center no-repeat;
+	background: url(https://play.pokemonshowdown.com/sprites/gen5ani/regirock.gif) center no-repeat;
 }
 .roomcounters .battlecount {
 	display: block;
 	width: 96px;
 	height: 96px;
 	position: absolute;
-	right: -72px;
+	right: -52px;
 	bottom: -24px;
-	background: url(https://play.pokemonshowdown.com/sprites/gen5/regirock.png) center no-repeat;
+	background: url(https://raw.githubusercontent.com/BeeruhBeement/pokemon-showdown/master/data/mods/gen9poaaltuniverse/sprites/front/spotalat.png) center no-repeat;
 }
 .roomcounters button:hover .battlecount {
-	background: url(https://play.pokemonshowdown.com/sprites/gen5ani/regirock.gif) center no-repeat;
+	background: url(https://raw.githubusercontent.com/BeeruhBeement/pokemon-showdown/master/data/mods/gen9poaaltuniverse/sprites/front/spotalat.png) center no-repeat;
 }
 
 .roomlist {

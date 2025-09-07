@@ -117,8 +117,8 @@
 			if (rooms.userCount) {
 				var userCount = Number(rooms.userCount);
 				var battleCount = Number(rooms.battleCount);
-				var leftSide = '<button class="button" name="finduser" title="Find an online user"><span class="pixelated usercount" title="Abomasnow Mega is crazy." ></span><strong>' + userCount + '</strong> ' + (userCount == 1 ? 'user' : 'users') + ' online</button> ';
-				var rightSide = '<button class="button" name="roomlist" title="Watch an active battle"><span class="pixelated battlecount" title="I like Regirock." ></span><strong>' + battleCount + '</strong> active ' + (battleCount == 1 ? 'battle' : 'battles') + '</button>';
+				var leftSide = '<button class="button" name="finduser" title="Find an online user"><span class="pixelated usercount" title="I like Regirock." ></span><strong>' + userCount + '</strong> ' + (userCount == 1 ? 'user' : 'users') + ' online</button> ';
+				var rightSide = '<button class="button" name="roomlist" title="Watch an active battle"><span class="pixelated battlecount" title="Spotalat was the first Pokémon added to the PoA Alternative Universe mod." ></span><strong>' + battleCount + '</strong> active ' + (battleCount == 1 ? 'battle' : 'battles') + '</button>';
 				this.$('.roomlisttop').html('<div class="roomcounters">' + leftSide + '</td><td>' + rightSide + '</div>');
 			}
 
