@@ -28,7 +28,7 @@ class ModifiableValue {
 		this.itemName = Dex.items.get(serverPokemon.item).name;
 		const ability = serverPokemon.ability || pokemon?.ability || serverPokemon.baseAbility;
 		this.abilityName = Dex.abilities.get(ability).name;
-		this.weatherName = battle.weather === 'snow' ? 'Snow' : Dex.moves.get(battle.weather).exists ?
+		this.weatherName = battle.weather === 'snowscape' ? 'Snowscape' : Dex.moves.get(battle.weather).exists ?
 			Dex.moves.get(battle.weather).name : Dex.abilities.get(battle.weather).name;
 	}
 	reset(value = 0, isAccuracy?: boolean) {
@@ -495,7 +495,7 @@ class BattleTooltips {
 		Stellar: "",
 		"???": "",
 
-		Sound: "Resonant Annihilation",
+		Sound: "",
 	};
 
 	static maxMoveTable: {[type in TypeName]: string} = {
@@ -579,7 +579,7 @@ class BattleTooltips {
 						zMove = this.battle.dex.moves.get(BattleTooltips.zMoveTable['Rock']);
 						break;
 					case 'hail':
-					case 'snow':
+					case 'snowscape':
 						zMove = this.battle.dex.moves.get(BattleTooltips.zMoveTable['Ice']);
 						break;
 					}
@@ -1114,6 +1114,9 @@ class BattleTooltips {
 		if (ability === 'purepower' || ability === 'hugepower') {
 			stats.atk *= 2;
 		}
+		if (ability === 'brainpower') {
+			stats.spa *= 2;
+		}
 		if (ability === 'hustle' || (ability === 'gorillatactics' && !clientPokemon?.volatiles['dynamax'])) {
 			stats.atk = Math.floor(stats.atk * 1.5);
 		}
@@ -1130,7 +1133,7 @@ class BattleTooltips {
 			if ((this.battle.gen >= 4 || this.battle.tier.includes("Modded")) && this.pokemonHasType(pokemon, 'Rock') && weather === 'sandstorm') {
 				stats.spd = Math.floor(stats.spd * 1.5);
 			}
-			if (this.pokemonHasType(pokemon, 'Ice') && weather === 'snow') {
+			if (this.pokemonHasType(pokemon, 'Ice') && weather === 'snowscape') {
 				stats.def = Math.floor(stats.def * 1.5);
 			}
 			if (this.pokemonHasType(pokemon, 'Dark') && weather === 'night') {
@@ -1334,7 +1337,7 @@ class BattleTooltips {
 		if (ability === 'sandveil' && weather === 'sandstorm' && this.battle.tier.includes("Modded")) {
 			stats.def *= 1.25;
 		}
-		if (ability === 'snowcloak' && (weather === 'snow' || weather === 'hail') && this.battle.tier.includes("Modded")) {
+		if (ability === 'snowcloak' && (weather === 'snowscape' || weather === 'hail') && this.battle.tier.includes("Modded")) {
 			stats.def *= 1.25;
 		}
 
@@ -1535,7 +1538,7 @@ class BattleTooltips {
 				moveType = 'Rock';
 				break;
 			case 'hail':
-			case 'snow':
+			case 'snowscape':
 				moveType = 'Ice';
 				if (this.battle.tier.includes('Modded')) category = 'Special';
 				break;
@@ -1691,7 +1694,7 @@ class BattleTooltips {
 		}
 		if ((move.id === 'blizzard' && this.battle.gen >= 4) || (move.id === 'blizzard' && this.battle.tier.includes("Modded"))) {
 			value.weatherModify(0, 'Hail');
-			value.weatherModify(0, 'Snow');
+			value.weatherModify(0, 'Snowscape');
 		}
 		if (['hurricane', 'thunder', 'bleakwindstorm', 'wildboltstorm', 'sandsearstorm'].includes(move.id)) {
 			value.weatherModify(0, 'Rain Dance');

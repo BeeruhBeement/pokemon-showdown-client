@@ -1,2 +1,2 @@
-const server_repo = "https://github.com/BeeruhBeement/pokemon-showdown.git";
+const server_repo = "https://github.com/BeeruhBeement/pokemon-showdown";
 module.exports = server_repo;

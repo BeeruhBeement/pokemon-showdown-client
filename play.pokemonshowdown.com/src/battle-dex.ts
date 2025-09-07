@@ -989,7 +989,7 @@ class ModdedDex {
 					case 'gen2crystalseviiislands':
 						data.category = Dex.getCSICategory(data.type);	
 						break;
-					case 'gen3mod':
+					case 'gen3dental':
 						data.category = Dex.getGen3ModCategory(data.type);	
 						break;
 					default: 

@@ -660,7 +660,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			}
 			if (overrideFormat) format = overrideFormat as ID;
 			else format = (format.slice(4) || 'customgame') as ID;
-			if (modFormatType) this.formatType = modFormatType as 'doubles' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' | 'dlc1' | 'dlc1doubles' | null;
+			if (modFormatType) this.formatType = modFormatType as 'doubles' | 'bdsp' | 'bdspdoubles' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' | 'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' | 'svdlc1natdex' | 'stadium' | 'lc' | null;
 		} else if (!format) {
 			this.dex = Dex;
 		}

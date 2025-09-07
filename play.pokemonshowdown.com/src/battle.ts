@@ -705,7 +705,7 @@ export class Side {
 			this.sideConditions[condition] = [effect.name, 1, 5, 0];
 			break;
 		case 'tailwind':
-			this.sideConditions[condition] = [effect.name, 1, (this.battle.gen >= 5 || this.battle.mod === 'gen3mod') ? persist ? 6 : 4 : persist ? 5 : 3, 0];
+			this.sideConditions[condition] = [effect.name, 1, (this.battle.gen >= 5 || this.battle.mod === 'gen3dental') ? persist ? 6 : 4 : persist ? 5 : 3, 0];
 			break;
 		case 'luckychant':
 			this.sideConditions[condition] = [effect.name, 1, 5, 0];
