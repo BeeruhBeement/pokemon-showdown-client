@@ -1674,6 +1674,9 @@ class BattleTooltips {
 			const stats = this.calculateModifiedStats(pokemon, serverPokemon, true);
 			if (stats.atk > stats.spa) category = 'Physical';
 		}
+		if (move.flags["contact"] && pokemon.ability === "Molten Hands") {
+			category = 'Special';
+		}
 		/*if (this.battle.tier.includes("VaporeMons") && move.id === 'terablast' && itemName === 'Tera Shard') {
 			const stats = this.calculateModifiedStats(pokemon, serverPokemon, true);
 			if (stats.atk > stats.spa) category = 'Physical';
