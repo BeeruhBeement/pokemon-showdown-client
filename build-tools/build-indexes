@@ -1405,6 +1405,42 @@ function buildTeambuilderTables() {
 						}
 					}
 				}
+
+				switch (id) {
+					// mainstays
+					case 'choiceband':
+					case 'choicespecs':
+					case 'eviolite':
+						greatItems.push(id);
+						break;
+					// great everywhere but metronome
+					case 'leftovers':
+					case 'lifeorb':
+					case 'choicescarf':
+					case 'assaultvest':
+					case 'focussash':
+					case 'powerherb':
+					case 'rockyhelmet':
+						/*if (!isMetBattle) */greatItems.push(id);
+						//goodItems.push(id);
+						break;
+					// just singles
+					case 'airballoon':
+					case 'loadeddice':
+					case 'heavydutyboots':
+					case 'expertbelt':
+					case 'salacberry':
+						// if (isDoubles || isMetBattle) goodItems.push(id);
+						greatItems.push(id);
+						break;
+					// generation specific
+					case 'mentalherb':
+						/*if (isMetBattle) goodItems.push(id);
+						else if (genNum > 4) greatItems.push(id);
+						else poorItems.push(id);*/
+						greatItems.push(id);
+						break;
+				}
 				
 				if (modEntry.itemUser || modEntry.megaStone || id === 'boosterenergy') {
 					specificItems.push(id);
