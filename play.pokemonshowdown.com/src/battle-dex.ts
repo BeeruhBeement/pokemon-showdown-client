@@ -686,8 +686,8 @@ const Dex = new class implements ModdedDex {
 		if (hasCustomSprite && window.ModSprites[modSpriteId][options.mod].includes('ani' + facing)){
 			hasCustomAnim = true;
 			animationData[facing] = {};
-			animationData[facing].w = 192;
-			animationData[facing].h = 192;
+			animationData[facing].w = 96;
+			animationData[facing].h = 96;
 		}
 		if (animationData[facing + 'f'] && options.gender === 'F') facing += 'f';
 		let allowAnim = (!hasCustomSprite || (hasCustomSprite && hasCustomAnim)) && !Dex.prefs('noanim') && !Dex.prefs('nogif');
