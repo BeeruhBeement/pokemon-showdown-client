@@ -739,7 +739,7 @@ class BattleTooltips {
 			if (move.flags.sound) {
 				text += `<p class="movetag">&#x2713; Sound <small>(doesn't affect Soundproof pokemon)</small></p>`;
 			}
-			if (move.flags.powder && (this.battle.gen > 5 || this.battle.tier.includes("Modded"))) {
+			if (move.flags.powder && (this.battle.gen > 5 || this.battle.tier.includes("Denise"))) {
 				text += `<p class="movetag">&#x2713; Powder <small>(doesn't affect Grass, Overcoat, Safety Goggles)</small></p>`;
 			}
 			if (move.flags.punch && ability === 'ironfist') {
@@ -846,7 +846,7 @@ class BattleTooltips {
 			text += '<p><small>HP:</small> ' + Pokemon.getHPText(pokemon) + exacthp + (pokemon.status ? ' <span class="status ' + pokemon.status + '">' + pokemon.status.toUpperCase() + '</span>' : '');
 			if (clientPokemon) {
 				if (pokemon.status === 'tox') {
-					if (pokemon.ability === 'Poison Heal' || pokemon.ability === 'Magic Guard' || (pokemon.ability === 'Toxic Boost' && this.battle.tier.includes("Modded"))) {
+					if (pokemon.ability === 'Poison Heal' || pokemon.ability === 'Magic Guard' || (pokemon.ability === 'Toxic Boost' && this.battle.tier.includes("Denise"))) {
 						text += ' <small>Would take if ability removed: ' + Math.floor(100 / 16 * Math.min(clientPokemon.statusData.toxicTurns + 1, 15)) + '%</small>';
 					} else {
 						text += ' Next damage: ' + Math.floor(100 / (clientPokemon.volatiles['dynamax'] ? 32 : 16) * Math.min(clientPokemon.statusData.toxicTurns + 1, 15)) + '%';
@@ -1120,17 +1120,17 @@ class BattleTooltips {
 		if (ability === 'hustle' || (ability === 'gorillatactics' && !clientPokemon?.volatiles['dynamax'])) {
 			stats.atk = Math.floor(stats.atk * 1.5);
 		}
-		if (ability === 'plus' && this.battle.tier.includes("Modded")) {
+		if (ability === 'plus' && this.battle.tier.includes("Denise")) {
 			stats.spa = Math.floor(stats.spa * 1.3);
 		}
-		if (ability === 'minus' && this.battle.tier.includes("Modded")) {
+		if (ability === 'minus' && this.battle.tier.includes("Denise")) {
 			stats.spd = Math.floor(stats.spd * 1.3);
 		}
 		if (ability === 'hustle' || (ability === 'gorillatactics' && !clientPokemon?.volatiles['dynamax'])) {
 			stats.atk = Math.floor(stats.atk * 1.5);
 		}
 		if (weather) {
-			if ((this.battle.gen >= 4 || this.battle.tier.includes("Modded")) && this.pokemonHasType(pokemon, 'Rock') && weather === 'sandstorm') {
+			if ((this.battle.gen >= 4 || this.battle.tier.includes("Denise")) && this.pokemonHasType(pokemon, 'Rock') && weather === 'sandstorm') {
 				stats.spd = Math.floor(stats.spd * 1.5);
 			}
 			if (this.pokemonHasType(pokemon, 'Ice') && weather === 'snowscape') {
@@ -1198,7 +1198,7 @@ class BattleTooltips {
 			}
 			for (const statName of Dex.statNamesExceptHP) {
 				if (clientPokemon.volatiles['protosynthesis' + statName] || clientPokemon.volatiles['quarkdrive' + statName]) {
-					if (statName === 'spe' && !this.battle.tier.includes("Modded")) {
+					if (statName === 'spe' && !this.battle.tier.includes("Denise")) {
 						speedModifiers.push(1.5);
 					} else {
 						stats[statName] = Math.floor(stats[statName] * 1.3);
@@ -1277,7 +1277,7 @@ class BattleTooltips {
 			stats.spa = Math.floor(stats.spa * 1.5);
 			stats.spd = Math.floor(stats.spd * 1.5);
 		}
-		if (clientPokemon && (ability === 'plus' || ability === 'minus') && !this.battle.tier.includes("Modded")) {
+		if (clientPokemon && (ability === 'plus' || ability === 'minus') && !this.battle.tier.includes("Denise")) {
 			let allyActive = clientPokemon.side.active;
 			if (allyActive.length > 1) {
 				let abilityName = (ability === 'plus' ? 'Plus' : 'Minus');
@@ -1334,10 +1334,10 @@ class BattleTooltips {
 			speedModifiers.push(0.25);
 		}
 		
-		if (ability === 'sandveil' && weather === 'sandstorm' && this.battle.tier.includes("Modded")) {
+		if (ability === 'sandveil' && weather === 'sandstorm' && this.battle.tier.includes("Denise")) {
 			stats.def *= 1.25;
 		}
-		if (ability === 'snowcloak' && (weather === 'snowscape' || weather === 'hail') && this.battle.tier.includes("Modded")) {
+		if (ability === 'snowcloak' && (weather === 'snowscape' || weather === 'hail') && this.battle.tier.includes("Denise")) {
 			stats.def *= 1.25;
 		}
 
@@ -1350,7 +1350,7 @@ class BattleTooltips {
 		stats.spe = stats.spe % 1 > 0.5 ? Math.ceil(stats.spe) : Math.floor(stats.spe);
 
 		if (pokemon.status === 'par' && ability !== 'quickfeet') {
-			if (this.battle.gen > 6 || this.battle.tier.includes("Modded")) {
+			if (this.battle.gen > 6 || this.battle.tier.includes("Denise")) {
 				stats.spe = Math.floor(stats.spe * 0.5);
 			} else {
 				stats.spe = Math.floor(stats.spe * 0.25);
@@ -1631,30 +1631,30 @@ class BattleTooltips {
 					if (value.abilityModify(0, 'Aerilate')) moveType = 'Flying';
 					if (value.abilityModify(0, 'Galvanize')) {
 						moveType = 'Electric';
-						if (this.battle.tier.includes("Modded")) category = 'Special';
+						if (this.battle.tier.includes("Denise")) category = 'Special';
 					}
 					if (value.abilityModify(0, 'Pixilate')) {
 						moveType = 'Fairy';
-						if (this.battle.tier.includes("Modded")) category = 'Special';
+						if (this.battle.tier.includes("Denise")) category = 'Special';
 					}
 					if (value.abilityModify(0, 'Refrigerate')) {
 						moveType = 'Ice';
-						if (this.battle.tier.includes("Modded")) category = 'Special';
+						if (this.battle.tier.includes("Denise")) category = 'Special';
 					}
 
 					if (value.abilityModify(0, 'Immolate')) {
 						moveType = 'Fire';
-						if (this.battle.tier.includes("Modded")) category = 'Special';
+						if (this.battle.tier.includes("Denise")) category = 'Special';
 					}
 					if (value.abilityModify(0, 'Drench')) {
 						moveType = 'Water';
-						if (this.battle.tier.includes("Modded")) category = 'Special';
+						if (this.battle.tier.includes("Denise")) category = 'Special';
 					}
 				}
 				if (value.abilityModify(0, 'Normalize')) 
 				{	
 					moveType = 'Normal';
-					if (this.battle.tier.includes("Modded")) category = 'Physical';
+					if (this.battle.tier.includes("Denise")) category = 'Physical';
 				}
 			}
 
@@ -1665,7 +1665,7 @@ class BattleTooltips {
 			).flags['sound'];
 			if (isSound && value.abilityModify(0, 'Liquid Voice')) {
 				moveType = 'Water';
-				if (this.battle.tier.includes("Modded")) category = 'Special';
+				if (this.battle.tier.includes("Denise")) category = 'Special';
 			}
 		}
 
@@ -1695,7 +1695,7 @@ class BattleTooltips {
 			value.set(0, "Poison type");
 			return value;
 		}
-		if ((move.id === 'blizzard' && this.battle.gen >= 4) || (move.id === 'blizzard' && this.battle.tier.includes("Modded"))) {
+		if ((move.id === 'blizzard' && this.battle.gen >= 4) || (move.id === 'blizzard' && this.battle.tier.includes("Denise"))) {
 			value.weatherModify(0, 'Hail');
 			value.weatherModify(0, 'Snowscape');
 		}
@@ -1755,7 +1755,7 @@ class BattleTooltips {
 		}
 
 		if (value.tryItem('Wide Lens')) {
-			if (this.battle.tier.includes("Modded")) {
+			if (this.battle.tier.includes("Denise")) {
 				accuracyModifiers.push(4915);
 				value.itemModify(1.2, "Wide Lens");
 			}
@@ -2032,14 +2032,14 @@ class BattleTooltips {
 		if (pokemon.status === 'brn' && move.category === 'Special') {
 			value.abilityModify(1.5, "Flare Boost");
 		}
-		if (move.flags['punch'] && !this.battle.tier.includes("Modded")) {
+		if (move.flags['punch'] && !this.battle.tier.includes("Denise")) {
 			value.abilityModify(1.2, 'Iron Fist');
 		}
 
-		if (move.flags['punch'] && this.battle.tier.includes("Modded")) {
+		if (move.flags['punch'] && this.battle.tier.includes("Denise")) {
 			value.abilityModify(1.3, 'Iron Fist');
 		}
-		if (move && this.battle.tier.includes("Modded")) {
+		if (move && this.battle.tier.includes("Denise")) {
 			value.abilityModify(1.3, 'Power Spot');
 		}
 
@@ -2052,21 +2052,21 @@ class BattleTooltips {
 		if (value.value <= 60) {
 			value.abilityModify(1.5, "Technician");
 		}
-		if (['psn', 'tox'].includes(pokemon.status) && (move.category === 'Physical' || this.battle.tier.includes("Modded"))) {
+		if (['psn', 'tox'].includes(pokemon.status) && (move.category === 'Physical' || this.battle.tier.includes("Denise"))) {
 			value.abilityModify(1.5, "Toxic Boost");
 		}
-		if ((['Rock', 'Ground', 'Steel'].includes(moveType) || this.battle.tier.includes("Modded")) && this.battle.weather === 'sandstorm' && !this.battle.tier.includes("VaporeMons")) {
+		if ((['Rock', 'Ground', 'Steel'].includes(moveType) || this.battle.tier.includes("Denise")) && this.battle.weather === 'sandstorm' && !this.battle.tier.includes("VaporeMons")) {
 			if (value.tryAbility("Sand Force")) value.weatherModify(1.3, "Sandstorm", "Sand Force");
 		}
 		if (this.battle.weather === 'sandstorm' && this.battle.tier.includes("VaporeMons")) {
 			if (value.tryAbility("Sand Force")) value.weatherModify(1.3, "Sandstorm", "Sand Force");
 		}
 		if (move.secondaries) {
-			if (this.battle.tier.includes("Modded")) value.abilityModify(1.2, "Sheer Force");
+			if (this.battle.tier.includes("Denise")) value.abilityModify(1.2, "Sheer Force");
 			else value.abilityModify(1.3, "Sheer Force");
 		}
 		if (move.flags['contact']) {
-			if (this.battle.tier.includes("Modded")) value.abilityModify(1.2, "Tough Claws");
+			if (this.battle.tier.includes("Denise")) value.abilityModify(1.2, "Tough Claws");
 			else value.abilityModify(1.3, "Tough Claws");
 		}
 		if (move.flags['sound']) {
@@ -2081,7 +2081,7 @@ class BattleTooltips {
 			}
 		}
 		if (target) {
-			if ((["MF", "FM"].includes(pokemon.gender + target.gender) && !this.battle.tier.includes("Modded"))) {
+			if ((["MF", "FM"].includes(pokemon.gender + target.gender) && !this.battle.tier.includes("Denise"))) {
 				value.abilityModify(0.75, "Rivalry");
 			} else if (["MM", "FF"].includes(pokemon.gender + target.gender)) {
 				value.abilityModify(1.25, "Rivalry");
@@ -2094,7 +2094,7 @@ class BattleTooltips {
 		if (
 			move.category !== 'Status' && allowTypeOverride && !move.isZ && !move.isMax &&
 			!move.id.startsWith('hiddenpower') &&
-			!this.battle.tier.includes("Modded")
+			!this.battle.tier.includes("Denise")
 		) {
 			if (move.type === 'Normal') {
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Aerilate");
@@ -2126,7 +2126,7 @@ class BattleTooltips {
 			'solarblade', 'steelbeam', 'doomdesire', 'glitzyglow', 'fleurcannon',
 			'lusterpurge', 'mirrorshot', 'moonblast', 'photongeyser', 'powergem'
 		];
-		if (illuminateMoves.includes(move.id) && this.battle.tier.includes("Modded")) {
+		if (illuminateMoves.includes(move.id) && this.battle.tier.includes("Denise")) {
 			value.abilityModify(1.2, 'Illuminate');
 		}
 
@@ -2173,7 +2173,7 @@ class BattleTooltips {
 		}
 
 		// Terrain
-		if (!this.battle.tier.includes("Modded")) {
+		if (!this.battle.tier.includes("Denise")) {
 				if ((this.battle.hasPseudoWeather('Electric Terrain') && moveType === 'Electric') ||
 					(this.battle.hasPseudoWeather('Grassy Terrain') && moveType === 'Grass') ||
 					(this.battle.hasPseudoWeather('Psychic Terrain') && moveType === 'Psychic')) {
@@ -2181,7 +2181,7 @@ class BattleTooltips {
 						value.modify(this.battle.gen > 7 ? 1.3 : 1.5, 'Terrain boost');
 					}
 			}
-		} else if (this.battle.tier.includes("Modded"))
+		} else if (this.battle.tier.includes("Denise"))
 		{
 			if ((this.battle.hasPseudoWeather('Electric Terrain') && moveType === 'Electric') ||
 				(this.battle.hasPseudoWeather('Grassy Terrain') && moveType === 'Grass') ||
@@ -2235,12 +2235,12 @@ class BattleTooltips {
 			if (!value.tryAbility("Guts")) value.modify(0.5, 'Burn');
 		}
 
-		if (this.battle.tier.includes("Modded") && serverPokemon.status === 'frz' && move.category === 'Special') {
+		if (this.battle.tier.includes("Denise") && serverPokemon.status === 'frz' && move.category === 'Special') {
 			value.modify(0.5, 'Freeze');
 		}
 
 		if (
-			move.id === 'steelroller' &&  !this.battle.tier.includes("Modded") &&
+			move.id === 'steelroller' &&  !this.battle.tier.includes("Denise") &&
 			!this.battle.hasPseudoWeather('Electric Terrain') &&
 			!this.battle.hasPseudoWeather('Grassy Terrain') &&
 			!this.battle.hasPseudoWeather('Misty Terrain') &&
@@ -2329,9 +2329,9 @@ class BattleTooltips {
 		}
 
 		// Type-enhancing items
-		if (BattleTooltips.itemTypes[item.name] === moveType || (BattleTooltips.moddedItemTypes[item.name] === moveType && this.battle.tier.includes("Modded"))) {
-			if (!this.battle.tier.includes("Modded")) value.itemModify(this.battle.gen < 4 ? 1.1 : 1.2);
-			if (this.battle.tier.includes("Modded")) value.itemModify(1.2);
+		if (BattleTooltips.itemTypes[item.name] === moveType || (BattleTooltips.moddedItemTypes[item.name] === moveType && this.battle.tier.includes("Denise"))) {
+			if (!this.battle.tier.includes("Denise")) value.itemModify(this.battle.gen < 4 ? 1.1 : 1.2);
+			if (this.battle.tier.includes("Denise")) value.itemModify(1.2);
 			return value;
 		}
 
@@ -2341,7 +2341,7 @@ class BattleTooltips {
 			return value;
 		}
 		
-		if (this.battle.tier.includes("Modded") && item.name === 'Light Ball' && (speciesName === 'Pichu' || speciesName === 'Pikachu' || speciesName === 'Raichu' || speciesName === 'Raichu-Alola')) {
+		if (this.battle.tier.includes("Denise") && item.name === 'Light Ball' && (speciesName === 'Pichu' || speciesName === 'Pikachu' || speciesName === 'Raichu' || speciesName === 'Raichu-Alola')) {
 			value.itemModify(2);
 			return value;
 		}
