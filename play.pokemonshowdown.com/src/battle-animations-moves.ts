@@ -36511,3 +36511,5 @@ BattleMoveAnims['frostbite'] = {anim: BattleMoveAnims['freezedry'].anim};
 
 // poaaltuniverse
 BattleMoveAnims['radiantburst'] = {anim: BattleMoveAnims['lusterpurge'].anim};
+BattleMoveAnims['toxicdrain'] = {anim: BattleMoveAnims['leechlife'].anim};
+BattleMoveAnims['frighttrain'] = {anim: BattleMoveAnims['flareblitz'].anim};
