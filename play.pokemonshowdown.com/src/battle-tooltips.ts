@@ -1497,7 +1497,7 @@ class BattleTooltips {
 			moveType = pokemonTypes[0];
 			
 			const specialTypes = ['Fire', 'Water', 'Grass', 'Ice', 'Electric', 'Psychic', 'Ghost', 'Fairy', 'Sound'];
-			if (this.battle.tier.includes('Modded')) category = specialTypes.includes(moveType) ? 'Special' : 'Physical';
+			if (this.battle.tier.includes('Denise')) category = specialTypes.includes(moveType) ? 'Special' : 'Physical';
 		}
 		// Moves that require an item to change their type.
 		let item = Dex.items.get(value.itemName);
@@ -1505,13 +1505,13 @@ class BattleTooltips {
 			if (value.itemModify(0)) moveType = item.onMemory;
 			
 			const specialTypes = ['Fire', 'Water', 'Grass', 'Ice', 'Electric', 'Psychic', 'Ghost', 'Fairy', 'Sound'];
-			if (this.battle.tier.includes('Modded')) category = specialTypes.includes(moveType) ? 'Special' : 'Physical';
+			if (this.battle.tier.includes('Denise')) category = specialTypes.includes(moveType) ? 'Special' : 'Physical';
 		}
 		if (move.id === 'judgment' && item.onPlate && !item.zMoveType) {
 			if (value.itemModify(0)) moveType = item.onPlate;
 			
 			const specialTypes = ['Fire', 'Water', 'Grass', 'Ice', 'Electric', 'Psychic', 'Ghost', 'Fairy', 'Sound'];
-			if (this.battle.tier.includes('Modded')) category = specialTypes.includes(moveType) ? 'Special' : 'Physical';
+			if (this.battle.tier.includes('Denise')) category = specialTypes.includes(moveType) ? 'Special' : 'Physical';
 		}
 		if (move.id === 'technoblast' && item.onDrive) {
 			if (value.itemModify(0)) moveType = item.onDrive;
@@ -1526,13 +1526,13 @@ class BattleTooltips {
 			case 'desolateland':
 				if (item.id === 'utilityumbrella') break;
 				moveType = 'Fire';
-				if (this.battle.tier.includes('Modded')) category = 'Special';
+				if (this.battle.tier.includes('Denise')) category = 'Special';
 				break;
 			case 'raindance':
 			case 'primordialsea':
 				if (item.id === 'utilityumbrella') break;
 				moveType = 'Water';
-				if (this.battle.tier.includes('Modded')) category = 'Special';
+				if (this.battle.tier.includes('Denise')) category = 'Special';
 				break;
 			case 'sandstorm':
 				moveType = 'Rock';
@@ -1540,10 +1540,10 @@ class BattleTooltips {
 			case 'hail':
 			case 'snowscape':
 				moveType = 'Ice';
-				if (this.battle.tier.includes('Modded')) category = 'Special';
+				if (this.battle.tier.includes('Denise')) category = 'Special';
 				break;
 			case 'night':
-				if (this.battle.tier.includes('Modded')) {
+				if (this.battle.tier.includes('Denise')) {
 					moveType = 'Dark';
 					break;
 				}
@@ -1573,7 +1573,7 @@ class BattleTooltips {
 		}
 		// Raging Bull's type depends on the Tauros forme
 		if (move.id === 'ragingbull') {
-			if (this.battle.tier.includes('Modded')) {
+			if (this.battle.tier.includes('Denise')) {
 				switch (pokemon.getSpeciesForme()) {
 					case 'Tauros-Paldea-Combat':
 					case 'Tauros-Paldea-Blaze':
