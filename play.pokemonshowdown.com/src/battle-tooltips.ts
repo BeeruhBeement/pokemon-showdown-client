@@ -2124,7 +2124,8 @@ class BattleTooltips {
 			'hyperbeam', 'icebeam', 'lightofruin', 'lightthatburnsthesky', 'meteorbeam',
 			'moongeistbeam', 'prismaticlaser', 'psybeam', 'signalbeam', 'solarbeam',
 			'solarblade', 'steelbeam', 'doomdesire', 'glitzyglow', 'fleurcannon',
-			'lusterpurge', 'mirrorshot', 'moonblast', 'photongeyser', 'powergem'
+			'lusterpurge', 'mirrorshot', 'moonblast', 'photongeyser', 'powergem',
+			'flash'
 		];
 		if (illuminateMoves.includes(move.id) && this.battle.tier.includes("Denise")) {
 			value.abilityModify(1.2, 'Illuminate');
