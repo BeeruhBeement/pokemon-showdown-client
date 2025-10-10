@@ -36092,6 +36092,99 @@ export const BattleMoveAnims: AnimTable = {
 			}, 'swing');
 		},
 	},
+	
+	venomousroar: {
+		anim(scene, [attacker, defender]) {
+			attacker.anim({
+				xscale: 0.6,
+				yscale: 1.2,
+				time: 200,
+			});
+			attacker.delay(150);
+			attacker.anim({
+				xscale: 1,
+				yscale: 1,
+				time: 150,
+			});
+
+			scene.showEffect('shadowball', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0,
+				opacity: 0.5,
+				time: 100,
+			}, {
+				z: attacker.behind(-50),
+				scale: 7,
+				opacity: 0,
+				time: 500,
+			}, 'linear');
+			scene.showEffect('shadowball', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0,
+				opacity: 0.5,
+				time: 250,
+			}, {
+				z: attacker.behind(-50),
+				scale: 7,
+				opacity: 0,
+				time: 700,
+			}, 'linear');
+			scene.showEffect('shadowball', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0,
+				opacity: 0.5,
+				time: 400,
+			}, {
+				z: attacker.behind(-50),
+				scale: 7,
+				opacity: 0,
+				time: 1100,
+			}, 'linear');
+
+			scene.showEffect('poisonwisp', {
+				x: defender.x + 40,
+				y: defender.y + 30,
+				z: defender.z,
+				scale: 0.8,
+				opacity: 0.5,
+				time: 600,
+			}, {
+				y: defender.y + 60,
+				opacity: 0,
+				time: 1000,
+			}, 'accel');
+			scene.showEffect('poisonwisp', {
+				x: defender.x - 40,
+				y: defender.y + 30,
+				z: defender.z,
+				scale: 0.8,
+				opacity: 0.5,
+				time: 800,
+			}, {
+				y: defender.y + 60,
+				opacity: 0,
+				time: 1200,
+			}, 'accel');
+			scene.showEffect('poisonwisp', {
+				x: defender.x,
+				y: defender.y + 40,
+				z: defender.z,
+				scale: 0.8,
+				opacity: 0.5,
+				time: 1000,
+			}, {
+				y: defender.y + 60,
+				opacity: 0,
+				time: 1400,
+			}, 'accel');
+		},
+	},
 };
 
 // placeholder animations
