@@ -1651,8 +1651,10 @@ class BattleTooltips {
 						if (this.battle.tier.includes("Denise")) category = 'Special';
 					}
 
+					// Kirby
 					if (value.abilityModify(0, 'Pitch Black')) {
 						moveType = 'Dark';
+						category = 'Special';
 					}
 				}
 				if (value.abilityModify(0, 'Normalize')) 
