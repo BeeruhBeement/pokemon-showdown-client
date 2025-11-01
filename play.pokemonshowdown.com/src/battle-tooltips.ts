@@ -1126,9 +1126,6 @@ class BattleTooltips {
 		if (ability === 'minus' && this.battle.tier.includes("Denise")) {
 			stats.spd = Math.floor(stats.spd * 1.3);
 		}
-		if (ability === 'hustle' || (ability === 'gorillatactics' && !clientPokemon?.volatiles['dynamax'])) {
-			stats.atk = Math.floor(stats.atk * 1.5);
-		}
 		if (weather) {
 			if ((this.battle.gen >= 4 || this.battle.tier.includes("Denise")) && this.pokemonHasType(pokemon, 'Rock') && weather === 'sandstorm') {
 				stats.spd = Math.floor(stats.spd * 1.5);
@@ -1652,7 +1649,7 @@ class BattleTooltips {
 					}
 
 					// Kirby
-					if (value.abilityModify(0, 'Pitch Black')) {
+					if (value.abilityModify(0, 'pitchblack')) {
 						moveType = 'Dark';
 						category = 'Special';
 					}
