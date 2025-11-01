@@ -1650,6 +1650,10 @@ class BattleTooltips {
 						moveType = 'Water';
 						if (this.battle.tier.includes("Denise")) category = 'Special';
 					}
+
+					if (value.abilityModify(0, 'Pitch Black')) {
+						moveType = 'Dark';
+					}
 				}
 				if (value.abilityModify(0, 'Normalize')) 
 				{	
