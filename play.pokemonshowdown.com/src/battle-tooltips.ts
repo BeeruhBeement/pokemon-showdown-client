@@ -565,6 +565,12 @@ class BattleTooltips {
 				if (!movePower && move.id.startsWith('hiddenpower')) {
 					movePower = this.battle.dex.moves.get('hiddenpower').zMove!.basePower;
 				}
+				if (pokemon.ability === 'solarborne') {
+					if (item.id != 'utilityumbrella') {
+						moveType = 'Fire';
+						if (this.battle.tier.includes('Denise')) category = 'Special';
+					}
+				};
 				if (move.id === 'weatherball') {
 					switch (this.battle.weather) {
 					case 'sunnyday':
@@ -1126,6 +1132,9 @@ class BattleTooltips {
 		if (ability === 'minus' && this.battle.tier.includes("Denise")) {
 			stats.spd = Math.floor(stats.spd * 1.3);
 		}
+		if (ability === 'ubercharge' || ability === 'perfectorganism') {
+			stats.spa *= Math.floor(stats.spa * 1.5);
+		}
 		if (weather) {
 			if ((this.battle.gen >= 4 || this.battle.tier.includes("Denise")) && this.pokemonHasType(pokemon, 'Rock') && weather === 'sandstorm') {
 				stats.spd = Math.floor(stats.spd * 1.5);
@@ -1143,7 +1152,7 @@ class BattleTooltips {
 				speedModifiers.push(2);
 			}
 			if (item !== 'utilityumbrella') {
-				if (weather === 'sunnyday' || weather === 'desolateland') {
+				if (weather === 'sunnyday' || weather === 'desolateland' || ability === 'solarborne') {
 					if (ability === 'chlorophyll') {
 						speedModifiers.push(2);
 					}
@@ -1518,6 +1527,12 @@ class BattleTooltips {
 		}
 		// Weather and pseudo-weather type changes.
 		if (move.id === 'weatherball' && value.weatherModify(0)) {
+			if (pokemon.ability === 'solarborne') {
+				if (item.id != 'utilityumbrella') {
+					moveType = 'Fire';
+					if (this.battle.tier.includes('Denise')) category = 'Special';
+				}
+			};
 			switch (this.battle.weather) {
 			case 'sunnyday':
 			case 'desolateland':
@@ -1652,6 +1667,10 @@ class BattleTooltips {
 					if (value.abilityModify(0, 'pitchblack')) {
 						moveType = 'Dark';
 						category = 'Special';
+					}
+					
+					if (value.abilityModify(0, 'acierate')) {
+						moveType = 'Steel';
 					}
 				}
 				if (value.abilityModify(0, 'Normalize')) 
@@ -2107,6 +2126,8 @@ class BattleTooltips {
 
 				value.abilityModify(1.2, "Immolate");
 				value.abilityModify(1.2, "Drench");
+				
+				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "acierate");
 			}
 			if (this.battle.gen > 6) {
 				value.abilityModify(1.2, "Normalize");
