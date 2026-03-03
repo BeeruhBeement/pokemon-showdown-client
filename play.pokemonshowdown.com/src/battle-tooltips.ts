@@ -1008,6 +1008,9 @@ class BattleTooltips {
 			const boostLevel = clientPokemon.boosts[clientStatName];
 			if (boostLevel) {
 				let boostTable = [1, 1.5, 2, 2.5, 3, 3.5, 4];
+				if (this.battle.tier.includes('buildmons')) {
+					boostTable = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6];
+				}
 				if (boostLevel > 0) {
 					stats[statName] *= boostTable[boostLevel];
 				} else {
