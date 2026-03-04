@@ -1930,6 +1930,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		}
 		return [...usableMoves, ...uselessMoves];
 	}
+	
 	filter(row: SearchRow, filters: string[][]) {
 		if (!filters) return true;
 		if (row[0] !== 'move') return true;
@@ -1940,7 +1941,11 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 				if (move.type !== value) return false;
 				break;
 			case 'category':
-				if (move.category !== value) return false;
+				if (['Physical', 'Special', 'Status'].includes(value)) {
+					if (move.category !== value) return false;
+				} else {
+					if (!move.flags.hasOwnProperty(value.toLowerCase())) return false;
+				}
 				break;
 			case 'pokemon':
 				if (!this.canLearn(value as ID, move.id)) return false;
