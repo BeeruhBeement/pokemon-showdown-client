@@ -1372,9 +1372,9 @@
 			buf += '<input type="text" name="move1" class="textbox chartinput" value="' + BattleLog.escapeHTML(set.moves[0]) + '" autocomplete="off" /></div>';
 			buf += '<div class="setcell"><input type="text" name="move2" class="textbox chartinput" value="' + BattleLog.escapeHTML(set.moves[1]) + '" autocomplete="off" /></div>';
 			if (this.curTeam.mod.includes('buildmons')) {
-				buf += '<div class="setcell"><input type="text" name="move3" class="textbox chartinput" style="height:12px;font-size:11px;" value="' + BattleLog.escapeHTML(set.moves[2]) + '" autocomplete="off" /></div>';
-				buf += '<div class="setcell"><input type="text" name="move4" class="textbox chartinput" style="height:12px;font-size:11px;" value="' + BattleLog.escapeHTML(set.moves[3]) + '" autocomplete="off" /></div>';
-				buf += '<div class="setcell"><input type="text" name="move5" class="textbox chartinput" style="height:12px;font-size:11px;" value="' + BattleLog.escapeHTML(set.moves[4]) + '" autocomplete="off" /></div>';
+				buf += '<div class="setcell"><input type="text" name="item2" class="textbox chartinput" style="height:12px;font-size:11px;" value="' + BattleLog.escapeHTML(set.moves[2]) + '" autocomplete="off" /></div>';
+				buf += '<div class="setcell"><input type="text" name="item3" class="textbox chartinput" style="height:12px;font-size:11px;" value="' + BattleLog.escapeHTML(set.moves[3]) + '" autocomplete="off" /></div>';
+				buf += '<div class="setcell"><input type="text" name="item4" class="textbox chartinput" style="height:12px;font-size:11px;" value="' + BattleLog.escapeHTML(set.moves[4]) + '" autocomplete="off" /></div>';
 			} else {
 				buf += '<div class="setcell"><input type="text" name="move3" class="textbox chartinput" value="' + BattleLog.escapeHTML(set.moves[2]) + '" autocomplete="off" /></div>';
 				buf += '<div class="setcell"><input type="text" name="move4" class="textbox chartinput" value="' + BattleLog.escapeHTML(set.moves[3]) + '" autocomplete="off" /></div>';
@@ -2968,7 +2968,9 @@
 			move2: 'move',
 			move3: 'move',
 			move4: 'move',
-			move5: 'item',
+			item2: 'item',
+			item3: 'item',
+			item4: 'item',
 			stats: 'stats',
 			details: 'details'
 		},
@@ -3000,7 +3002,11 @@
 					this.$('input[name=move2]').val(moves[1] || '');
 					this.$('input[name=move3]').val(moves[2] || '');
 					this.$('input[name=move4]').val(moves[3] || '');
-					this.$('input[name=move5]').val(moves[4] || '');
+
+					this.$('input[name=item2]').val(moves[4] || '');
+					this.$('input[name=item3]').val(moves[5] || '');
+					this.$('input[name=item4]').val(moves[6] || '');
+
 					this.$('input[name=move' + Math.min(moves.length + 1, 6) + ']').focus();
 					this.curSet.moves = moves;
 					this.search.find('');
@@ -3133,7 +3139,7 @@
 					val = (id in BattleItems ? this.curTeam.dex.items.get(e.currentTarget.value).name : '');
 				}
 				break;
-			case 'move1': case 'move2': case 'move3': case 'move4': case 'move5':
+			case 'move1': case 'move2': case 'move3': case 'move4': case 'item2': case 'item3': case 'item4':
 				val = (id in BattleMovedex ? this.curTeam.dex.moves.get(e.currentTarget.value).name : '');
 				break;
 			}
@@ -3253,7 +3259,13 @@
 				this.unChooseMove(this.curSet.moves[1]);
 				this.curSet.moves[1] = val;
 				this.chooseMove(val);
-				if (selectNext) this.$('input[name=move3]').select();
+				if (selectNext) {
+					if(this.$('input[name=item2]').length) {
+						this.$('input[name=item2]').select();
+					} else {
+						this.$('input[name=move3]').select();
+					}
+				}
 				break;
 			case 'move3':
 				if (!this.curSet.moves[0]) this.curSet.moves[0] = '';
@@ -3271,22 +3283,20 @@
 				this.curSet.moves[3] = val;
 				this.chooseMove(val);
 				if (selectNext) {
-					if(this.$('input[name=move5]').length) {
-						this.$('input[name=move5]').select();
-					} else {
-						this.stats();
-						this.$('button.setstats').focus();
-					}
+					this.stats();
+					this.$('button.setstats').focus();
 				}
 				break;
-			case 'move5':
-				if (!this.curSet.moves[0]) this.curSet.moves[0] = '';
-				if (!this.curSet.moves[1]) this.curSet.moves[1] = '';
-				if (!this.curSet.moves[2]) this.curSet.moves[2] = '';
-				if (!this.curSet.moves[3]) this.curSet.moves[3] = '';
-				this.unChooseMove(this.curSet.moves[4]);
+			case 'item2':
+				this.curSet.moves[2] = val;
+				if (selectNext) this.$('input[name=item3]').select();
+				break;
+			case 'item3':
+				this.curSet.moves[3] = val;
+				if (selectNext) this.$('input[name=item4]').select();
+				break;
+			case 'item4':
 				this.curSet.moves[4] = val;
-				this.chooseMove(val);
 				if (selectNext) {
 					this.stats();
 					this.$('button.setstats').focus();
