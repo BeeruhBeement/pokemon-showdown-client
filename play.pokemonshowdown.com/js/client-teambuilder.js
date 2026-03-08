@@ -3533,6 +3533,7 @@
 
 			if (stat === 'hp') {
 				if (baseStat === 1) return 1;
+				if (this.curTeam.mod.includes('buildmons')) return Math.floor(Math.floor(2 * baseStat + iv + Math.floor(ev / 4)) * set.level / 100 + 5);
 				if (!supportsEVs) return Math.floor(Math.floor(2 * baseStat + iv + 100) * set.level / 100 + 10) + (supportsAVs ? ev : 0);
 				return Math.floor(Math.floor(2 * baseStat + iv + Math.floor(ev / 4) + 100) * set.level / 100 + 10);
 			}
