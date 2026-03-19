@@ -1140,12 +1140,14 @@ class BattleTooltips {
 		}
 		if (weather) {
 			if ((this.battle.gen >= 4 || this.battle.tier.includes("Denise")) && this.pokemonHasType(pokemon, 'Rock') && weather === 'sandstorm') {
-				stats.spd = Math.floor(stats.spd * 1.5);
+				if (this.battle.tier.includes("Buildmons")) stats.spd = Math.floor(stats.spd * 1.2);
+				else stats.spd = Math.floor(stats.spd * 1.5);
 			}
 			if (this.pokemonHasType(pokemon, 'Ice') && weather === 'snowscape') {
-				stats.def = Math.floor(stats.def * 1.5);
+				if (this.battle.tier.includes("Buildmons")) stats.def = Math.floor(stats.def * 1.2);
+				else stats.def = Math.floor(stats.def * 1.5);
 			}
-			if (this.pokemonHasType(pokemon, 'Dark') && weather === 'night') {
+			if (this.battle.tier.includes("Denise") && this.pokemonHasType(pokemon, 'Dark') && weather === 'night') {
 				stats.spa = Math.floor(stats.spa * 1.5);
 			}
 			if (ability === 'sandrush' && weather === 'sandstorm') {
