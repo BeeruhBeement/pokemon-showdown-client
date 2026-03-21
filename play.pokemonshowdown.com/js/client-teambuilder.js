@@ -2471,7 +2471,15 @@
 
 			if (this.curTeam.gen > 2) {
 				buf += '<p style="clear:both">Nature: <select name="nature" class="button">';
-				for (var i in BattleNatures) {
+				var natureKeys = Object.keys(BattleNatures);
+				var start = 0;
+				var end = 25;
+				if (this.curTeam.format.includes('buildmons')) {
+					start = 25;
+					end = 37;
+				}
+				for (var idx = start; idx < end; idx++) {
+					var i = natureKeys[idx];
 					var curNature = BattleNatures[i];
 					buf += '<option value="' + i + '"' + (curNature === nature ? 'selected="selected"' : '') + '>' + i;
 					if (curNature.plus) {
@@ -2479,6 +2487,7 @@
 					}
 					buf += '</option>';
 				}
+
 				buf += '</select></p>';
 
 				buf += '<p><em>Protip:</em> You can also set natures by typing <kbd>+</kbd> and <kbd>-</kbd> next to a stat.</p>';
@@ -3531,9 +3540,8 @@
 			if (evOverride !== undefined) ev = evOverride;
 			if (ev === undefined) ev = (this.curTeam.gen > 2 ? 0 : 252);
 
-			if (stat === 'hp') {
+			if (stat === 'hp' && !this.curTeam.mod.includes('buildmons')) {
 				if (baseStat === 1) return 1;
-				if (this.curTeam.mod.includes('buildmons')) return Math.floor(Math.floor(2 * baseStat + iv + Math.floor(ev / 4)) * set.level / 100 + 5);
 				if (!supportsEVs) return Math.floor(Math.floor(2 * baseStat + iv + 100) * set.level / 100 + 10) + (supportsAVs ? ev : 0);
 				return Math.floor(Math.floor(2 * baseStat + iv + Math.floor(ev / 4) + 100) * set.level / 100 + 10);
 			}
@@ -3544,9 +3552,11 @@
 			if (natureOverride) {
 				val *= natureOverride;
 			} else if (BattleNatures[set.nature] && BattleNatures[set.nature].plus === stat) {
-				val *= 1.1;
+				if (set.nature === 'Fighter' || set.nature === 'Sorcerer' || set.nature === 'Tank') val *= 1.2
+				else val *= 1.1;
 			} else if (BattleNatures[set.nature] && BattleNatures[set.nature].minus === stat) {
-				val *= 0.9;
+				if (set.nature === 'Fighter' || set.nature === 'Sorcerer' || set.nature === 'Tank') val *= 0.8
+				else val *= 0.9;
 			}
 			if (!supportsEVs) {
 				var friendshipValue = Math.floor((70 / 255 / 10 + 1) * 100);

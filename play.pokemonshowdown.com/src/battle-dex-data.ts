@@ -105,6 +105,52 @@ const BattleNatures: {[k in NatureName]: {plus?: StatName, minus?: StatName}} = 
 		plus: 'spe',
 		minus: 'atk',
 	},
+	
+	Fighter: {
+		plus: 'atk',
+		minus: 'spa',
+	},
+	Generalist: {},
+	Healer: {
+		plus: 'hp',
+		minus: 'atk',
+	},
+	Hexer: {
+		plus: 'spa',
+		minus: 'def',
+	},
+	Hunter: {
+		plus: 'atk',
+		minus: 'hp',
+	},
+	Invoker: {
+		plus: 'spa',
+		minus: 'def',
+	},
+	Ranger: {
+		plus: 'spe',
+		minus: 'spa',
+	},
+	Sorcerer: {
+		plus: 'spa',
+		minus: 'atk',
+	},
+	Supporter: {
+		plus: 'hp',
+		minus: 'spd',
+	},
+	Survivalist: {
+		plus: 'hp',
+		minus: 'spd',
+	},
+	Tank: {
+		plus: 'hp',
+		minus: 'spe',
+	},
+	Warlock: {
+		plus: 'atk',
+		minus: 'spd',
+	},
 };
 const BattleStatIDs: {[k: string]: StatName | undefined} = {
 	HP: 'hp',
@@ -1077,7 +1123,8 @@ const BattleAvatarNumbers: {[k: string]: string} = {
 type StatName = 'hp' | 'atk' | 'def' | 'spa' | 'spd' | 'spe';
 type NatureName = 'Adamant' | 'Bashful' | 'Bold' | 'Brave' | 'Calm' | 'Careful' | 'Docile' | 'Gentle' |
 	'Hardy' | 'Hasty' | 'Impish' | 'Jolly' | 'Lax' | 'Lonely' | 'Mild' | 'Modest' | 'Naive' | 'Naughty' |
-	'Quiet' | 'Quirky' | 'Rash' | 'Relaxed' | 'Sassy' | 'Serious' | 'Timid';
+	'Quiet' | 'Quirky' | 'Rash' | 'Relaxed' | 'Sassy' | 'Serious' | 'Timid' | 
+	'Fighter' | 'Generalist' | 'Healer' | 'Hexer' | 'Hunter' | 'Invoker' | 'Ranger' | 'Sorcerer' | 'Supporter' | 'Survivalist' | 'Tank' | 'Warlock';
 type StatNameExceptHP = 'atk' | 'def' | 'spa' | 'spd' | 'spe';
 type TypeName = 'Normal' | 'Fighting' | 'Flying' | 'Poison' | 'Ground' | 'Rock' | 'Bug' | 'Ghost' | 'Steel' |
 	'Fire' | 'Water' | 'Grass' | 'Electric' | 'Psychic' | 'Ice' | 'Dragon' | 'Dark' | 'Fairy' | 'Stellar' | 'Sound' | '???';
