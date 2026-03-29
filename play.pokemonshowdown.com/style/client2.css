@@ -1694,6 +1694,12 @@ a.ilink.yours {
 .status.bld {
 	background: #a40000;
 }
+.status.wet {
+	background: rgb(0, 106, 155);
+}
+.status.ptr {
+	background: #7e7369;
+}
 
 .movemenu button {
 	float: left;
