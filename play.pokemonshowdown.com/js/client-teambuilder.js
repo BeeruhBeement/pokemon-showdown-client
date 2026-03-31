@@ -1397,7 +1397,7 @@
 					evBuf += '<small>&minus;</small>';
 				}
 				var width = stats[j] * 75 / 504;
-				if (j == 'hp') width = stats[j] * 75 / 704;
+				if (j == 'hp' && !this.curTeam.format.includes('buildmons')) width = stats[j] * 75 / 704;
 				if (width > 75) width = 75;
 				var color = Math.floor(stats[j] * 180 / 714);
 				if (color > 360) color = 360;
@@ -2011,7 +2011,7 @@
 					evBuf += '<small>&minus;</small>';
 				}
 				var width = stats[stat] * 75 / 504;
-				if (stat == 'hp') width = stats[stat] * 75 / 704;
+				if (stat == 'hp' && !this.curTeam.format.includes('buildmons')) width = stats[stat] * 75 / 704;
 				if (width > 75) width = 75;
 				var color = Math.floor(stats[stat] * 180 / 714);
 				if (color > 360) color = 360;
@@ -2034,7 +2034,7 @@
 			for (var stat in stats) {
 				if (stat === 'spd' && this.curTeam.gen === 1) continue;
 				var width = stats[stat] * 180 / 504;
-				if (stat == 'hp') width = stats[stat] * 180 / 704;
+				if (stat == 'hp' && !this.curTeam.format.includes('buildmons')) width = stats[stat] * 180 / 704;
 				if (width > 179) width = 179;
 				var color = Math.floor(stats[stat] * 180 / 714);
 				if (color > 360) color = 360;
@@ -2288,7 +2288,7 @@
 			for (var i in stats) {
 				stats[i] = this.getStat(i);
 				var width = stats[i] * 180 / 504;
-				if (i == 'hp') width = Math.floor(stats[i] * 180 / 704);
+				if (i == 'hp' && !this.curTeam.format.includes('buildmons')) width = Math.floor(stats[i] * 180 / 704);
 				if (width > 179) width = 179;
 				var color = Math.floor(stats[i] * 180 / 714);
 				if (color > 360) color = 360;
