@@ -302,6 +302,7 @@ class DexSearch {
 		// Notes:
 		// - if we have a searchType, that searchType's buffer will be on top
 		let bufs: SearchRow[][] = [[], [], [], [], [], [], [], [], [], []];
+		let seenInBuf: Record<string, boolean>[] = bufs.map(() => Object.create(null));
 		let topbufIndex = -1;
 
 		let count = 0;
@@ -406,29 +407,6 @@ class DexSearch {
 				topbufIndex = 2;
 			}
 
-						// determine if the element comes from the current mod
-						const table = BattleTeambuilderTable[window.room.curTeam.mod];
-						if (
-							typeIndex === 1 && (!BattlePokedex[id] || BattlePokedex[id].exists === false) &&
-							(!table || !table.overrideDexInfo || id in table.overrideDexInfo === false)
-						) continue;
-						else if (
-							typeIndex === 5 && (!BattleItems[id] || BattleItems[id].exists === false) &&
-							(!table || !table.overrideItemInfo || id in table.overrideItemInfo === false)
-						) continue;
-						else if (
-							typeIndex === 4 && (!BattleMovedex[id] || BattleMovedex[id].exists === false) &&
-							(!table || !table.overrideMoveInfo || id in table.overrideMoveInfo === false)
-						) continue;
-						else if (
-							typeIndex === 6 && (!BattleAbilities[id] || BattleAbilities[id].exists === false) &&
-							(!table || !table.overrideAbilityDesc || id in table.overrideAbilityDesc === false)
-						) continue;
-						else if (
-							typeIndex === 2 && id.replace(id.charAt(0), id.charAt(0).toUpperCase()) in window.BattleTypeChart === false &&
-							(!table || id.replace(id.charAt(0), id.charAt(0).toUpperCase()) in table.overrideTypeChart === false)
-						) continue;
-
 			if (illegal && typeIndex === searchTypeIndex) {
 				// Always show illegal results under legal results.
 				// This is done by putting legal results (and the type header)
@@ -439,15 +417,22 @@ class DexSearch {
 					bufs[0] = [['header', DexSearch.typeName[type]]];
 				}
 				if (!(id in illegal)) typeIndex = 0;
+				// Move illegal pokemon to the bottom of the results
+				if (id in illegal && searchTypeIndex === 1) {
+					typeIndex = 8;
+					if (!bufs[typeIndex].length) {
+						bufs[typeIndex] = [['header', "Illegal Pok\u00e9mon"]];
+					}
+				}
 			} else {
 				if (!bufs[typeIndex].length) {
 					bufs[typeIndex] = [['header', DexSearch.typeName[type]]];
 				}
 			}
 
-			// don't match duplicate aliases
-			let curBufLength = (passType === 'alias' && bufs[typeIndex].length);
-			if (curBufLength && bufs[typeIndex][curBufLength - 1][1] === id) continue;
+			// don't add duplicate results
+			if (id in seenInBuf[typeIndex]) continue;
+			seenInBuf[typeIndex][id] = true;
 
 			bufs[typeIndex].push([type, id, matchStart, matchEnd]);
 
