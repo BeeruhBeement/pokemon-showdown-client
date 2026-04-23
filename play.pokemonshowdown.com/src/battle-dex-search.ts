@@ -407,6 +407,25 @@ class DexSearch {
 				topbufIndex = 2;
 			}
 
+			// determine if the element comes from the current mod
+			const table = BattleTeambuilderTable[window.room.curTeam.mod];
+			if (
+				typeIndex === 1 && (!BattlePokedex[id] || BattlePokedex[id].exists === false) &&
+				(!table || !table.overrideDexInfo || id in table.overrideDexInfo === false)
+			) continue;
+			else if (
+				typeIndex === 5 && (!BattleItems[id] || BattleItems[id].exists === false) &&
+				(!table || !table.overrideItemInfo || id in table.overrideItemInfo === false)
+			) continue;
+			else if (
+				typeIndex === 4 && (!BattleMovedex[id] || BattleMovedex[id].exists === false) &&
+				(!table || !table.overrideMoveInfo || id in table.overrideMoveInfo === false)
+			) continue;
+			else if (
+				typeIndex === 6 && (!BattleAbilities[id] || BattleAbilities[id].exists === false) &&
+				(!table || !table.overrideAbilityDesc || id in table.overrideAbilityDesc === false)
+			) continue;
+
 			if (illegal && typeIndex === searchTypeIndex) {
 				// Always show illegal results under legal results.
 				// This is done by putting legal results (and the type header)
