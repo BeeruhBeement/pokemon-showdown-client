@@ -381,8 +381,10 @@ export class Pokemon implements PokemonDetails, PokemonHealth {
 		if (!this.boosts[boostStat]) {
 			return '1&times;&nbsp;' + boostStatTable[boostStat];
 		}
-		if (this.boosts[boostStat] > 6) this.boosts[boostStat] = 6;
-		if (this.boosts[boostStat] < -6) this.boosts[boostStat] = -6;
+		if (!this.side.battle.tier.includes('Buildmons')) {
+			if (this.boosts[boostStat] > 6) this.boosts[boostStat] = 6;
+			if (this.boosts[boostStat] < -6) this.boosts[boostStat] = -6;
+		}
 		const isRBY = this.side.battle.gen <= 1 && !this.side.battle.tier.includes('Stadium');
 		if (!isRBY && (boostStat === 'accuracy' || boostStat === 'evasion')) {
 			if (this.boosts[boostStat] > 0) {
@@ -397,6 +399,9 @@ export class Pokemon implements PokemonDetails, PokemonHealth {
 			];
 			// let badBoostTable = ['Normal', '&minus;1', '&minus;2', '&minus;3', '&minus;4', '&minus;5', '&minus;6'];
 			return '' + badBoostTable[-this.boosts[boostStat]] + '&nbsp;' + boostStatTable[boostStat];
+		}
+		if (this.side.battle.tier.includes('Buildmons')) {
+			return '+' + this.boosts[boostStat] + '%&nbsp;' + boostStatTable[boostStat];
 		}
 		if (this.boosts[boostStat] > 0) {
 			let goodBoostTable = [

@@ -1009,13 +1009,16 @@ class BattleTooltips {
 			if (boostLevel) {
 				let boostTable = [1, 1.5, 2, 2.5, 3, 3.5, 4];
 				if (this.battle.tier.includes('Buildmons')) {
-					boostTable = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6];
-				}
-				if (boostLevel > 0) {
-					stats[statName] *= boostTable[boostLevel];
-				} else {
-					if (this.battle.gen <= 2) boostTable = [1, 100 / 66, 2, 2.5, 100 / 33, 100 / 28, 4];
-					stats[statName] /= boostTable[-boostLevel];
+					stats[statName] *= 1 + boostLevel / 100;
+				} 
+				else
+				{
+					if (boostLevel > 0) {
+						stats[statName] *= boostTable[boostLevel];
+					} else {
+						if (this.battle.gen <= 2) boostTable = [1, 100 / 66, 2, 2.5, 100 / 33, 100 / 28, 4];
+						stats[statName] /= boostTable[-boostLevel];
+					}
 				}
 				stats[statName] = Math.floor(stats[statName]);
 			}
