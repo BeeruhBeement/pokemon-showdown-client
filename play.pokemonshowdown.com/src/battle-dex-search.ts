@@ -1306,26 +1306,47 @@ class BattleAbilitySearch extends BattleTypedSearch<'ability'> {
 		const format = this.format;
 		const isHackmons = (format.includes('hackmons') || format.endsWith('bh'));
 		const isAAA = (format === 'almostanyability' || format.includes('aaa'));
+
+		const isBuildmons = (this.mod.includes('buildmons'));
+
 		const dex = this.dex;
 		let species = dex.species.get(this.species);
-		let abilitySet: SearchRow[] = [['header', "Abilities"]];
+		let abilitySet: SearchRow[] = [];
+		if (isBuildmons) {
+			abilitySet = [['header', "Skill"]];
+		} else {
+			abilitySet = [['header', "Abilities"]];
+		}
 
 		if (species.isMega) {
 			abilitySet.unshift(['html', `Will be <strong>${species.abilities['0']}</strong> after Mega Evolving.`]);
 			species = dex.species.get(species.baseSpecies);
 		}
-		abilitySet.push(['ability', toID(species.abilities['0'])]);
-		if (species.abilities['1']) {
-			abilitySet.push(['ability', toID(species.abilities['1'])]);
+
+		if (isBuildmons) {
+			abilitySet.push(['ability', toID(species.abilities['skill'])]);
+			abilitySet.push(['header', "Perks"]);
+			for (let i=0; i<6; i++) {
+				if (species.abilities[`${i}`]) {
+					abilitySet.push(['category', `<u>Level ${i+5}0</u>`]);
+					abilitySet.push(['ability', toID(species.abilities[`${i}`])]);
+				}
+			}
+		} else {
+			abilitySet.push(['ability', toID(species.abilities['0'])]);
+			if (species.abilities['1']) {
+				abilitySet.push(['ability', toID(species.abilities['1'])]);
+			}
+			if (species.abilities['H']) {
+				abilitySet.push(['header', "Hidden Ability"]);
+				abilitySet.push(['ability', toID(species.abilities['H'])]);
+			}
+			if (species.abilities['S']) {
+				abilitySet.push(['header', "Special Event Ability"]);
+				abilitySet.push(['ability', toID(species.abilities['S'])]);
+			}
 		}
-		if (species.abilities['H']) {
-			abilitySet.push(['header', "Hidden Ability"]);
-			abilitySet.push(['ability', toID(species.abilities['H'])]);
-		}
-		if (species.abilities['S']) {
-			abilitySet.push(['header', "Special Event Ability"]);
-			abilitySet.push(['ability', toID(species.abilities['S'])]);
-		}
+
 		if (isAAA || format.includes('metronomebattle') || isHackmons) {
 			let abilities: ID[] = [];
 			for (let i in this.getTable()) {
