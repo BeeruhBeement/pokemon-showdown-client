@@ -757,6 +757,9 @@ class BattleTooltips {
 			if (move.flags.bite && ability === 'strongjaw') {
 				text += `<p class="movetag">&#x2713; Bite <small>(boosted by Strong Jaw)</small></p>`;
 			}
+			if (move.flags.kicking && ability === 'striker') {
+				text += `<p class="movetag">&#x2713; Bite <small>(boosted by Strong Jaw)</small></p>`;
+			}
 			if ((move.recoil || move.hasCrashDamage) && ability === 'reckless') {
 				text += `<p class="movetag">&#x2713; Recoil <small>(boosted by Reckless)</small></p>`;
 			}
@@ -1273,6 +1276,9 @@ class BattleTooltips {
 				stats.def = Math.floor(stats.def * 1.5);
 			}
 		}
+		if (ability === 'whippedwonderland' && this.battle.hasPseudoWeather('Misty Terrain')) {
+			stats.def = Math.floor(stats.def * 1.3333);
+		}
 		if (this.battle.hasPseudoWeather('Electric Terrain')) {
 			if (ability === 'surgesurfer') {
 				speedModifiers.push(2);
@@ -1697,6 +1703,9 @@ class BattleTooltips {
 				moveType = 'Water';
 				if (this.battle.tier.includes("Denise")) category = 'Special';
 			}
+			if (isSound && value.abilityModify(0, 'Dune Tune')) {
+				moveType = 'Ground';
+			}
 		}
 
 		if (move.id === 'photongeyser' || move.id === 'lightthatburnsthesky' ||
@@ -2079,6 +2088,9 @@ class BattleTooltips {
 		if (move.flags['bite']) {
 			value.abilityModify(1.5, "Strong Jaw");
 		}
+		if (move.flags['kicking']) {
+			value.abilityModify(1.2, "Striker");
+		}
 		if (value.value <= 60) {
 			value.abilityModify(1.5, "Technician");
 		}
@@ -2099,6 +2111,9 @@ class BattleTooltips {
 			if (this.battle.tier.includes("Denise")) value.abilityModify(1.2, "Tough Claws");
 			else value.abilityModify(1.3, "Tough Claws");
 		}
+		if (!move.flags['contact']) {
+			value.abilityModify(1.2, "Tyrannical Reign");
+		}
 		if (move.flags['sound']) {
 			value.abilityModify(1.3, "Punk Rock");
 		}
@@ -2108,6 +2123,11 @@ class BattleTooltips {
 		for (let i = 1; i <= 5 && i <= pokemon.side.faintCounter; i++) {
 			if (pokemon.volatiles[`fallen${i}`]) {
 				value.abilityModify(1 + 0.1 * i, "Supreme Overlord");
+			}
+		}
+		for (let i = 1; i <= 5 && i <= pokemon.side.faintCounter; i++) {
+			if (pokemon.volatiles[`fallen${i}`]) {
+				value.abilityModify(1.5 - 0.1 * i, "Team Player");
 			}
 		}
 		if (target) {
