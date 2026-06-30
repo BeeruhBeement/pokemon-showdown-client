@@ -33,7 +33,7 @@ Config.customcolors = {
 	'zarel': 'aeo'
 };
 /*** Begin automatically generated configuration ***/
-Config.version = "0.11.2";
+Config.version = "0.11.2 (12d919e6/57502f43)";
 
 Config.routes = {
 	root: 'api.petmodsdh.com',
