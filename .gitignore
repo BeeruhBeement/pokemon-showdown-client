@@ -48,3 +48,4 @@ node_modules
 /replay.pokemonshowdown.com/ads.txt
 
 /Stats
+config/config.js

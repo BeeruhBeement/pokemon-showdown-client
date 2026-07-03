@@ -1141,7 +1141,7 @@ class BattleTooltips {
 		if (ability === 'minus' && this.battle.tier.includes("Denise")) {
 			stats.spd = Math.floor(stats.spd * 1.3);
 		}
-		if (ability === 'ubercharge' || ability === 'perfectorganism') {
+		if (ability === 'ubercharge') {
 			stats.spa *= Math.floor(stats.spa * 1.5);
 		}
 		if (weather) {
@@ -1277,7 +1277,7 @@ class BattleTooltips {
 			}
 		}
 		if (ability === 'whippedwonderland' && this.battle.hasPseudoWeather('Misty Terrain')) {
-			stats.def = Math.floor(stats.def * 1.3333);
+			stats.spd = Math.floor(stats.spd * 1.3333);
 		}
 		if (this.battle.hasPseudoWeather('Electric Terrain')) {
 			if (ability === 'surgesurfer') {
